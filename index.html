@@ -2,7 +2,7 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Hasan Sarptaş - Dijital Kartvizit</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,6 +26,13 @@
             padding: 0;
         }
 
+        /* Tam ekran yükseklik ayarı */
+        html, body {
+            height: 100%;
+            width: 100%;
+            overflow-x: hidden;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--bg-color);
@@ -34,25 +41,32 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            padding: 20px;
+            padding: 16px;
         }
 
+        /* Ekranı dikeyde tam ortalayan ve esneyen ana kapsayıcı */
         .card-container {
             background: var(--card-bg);
             width: 100%;
             max-width: 400px;
+            max-height: 100%;
             border-radius: 24px;
-            padding: 32px 24px;
+            padding: 28px 24px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
             border: 1px solid var(--border-color);
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            overflow-y: auto; /* Küçük ekranlarda taşmayı önler */
         }
 
         .profile-img-container {
-            width: 150px;
-            height: 150px;
-            margin: 0 auto 10px auto;
+            width: 105px;
+            height: 105px;
+            margin: 0 auto 16px auto;
             position: relative;
+            flex-shrink: 0;
         }
 
         .profile-img {
@@ -67,7 +81,7 @@
         .name {
             font-size: 22px;
             font-weight: 700;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
             letter-spacing: -0.02em;
         }
 
@@ -79,10 +93,11 @@
         }
 
         .company {
-            font-size: 14px;
+            font-size: 13.5px;
             color: var(--text-muted);
             font-weight: 400;
-            margin-bottom: 24px;
+            line-height: 1.4;
+            margin-bottom: 20px;
         }
 
         /* Ana vCard Butonu */
@@ -101,7 +116,8 @@
             text-decoration: none;
             transition: all 0.2s ease;
             box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
-            margin-bottom: 28px;
+            margin-bottom: 20px;
+            flex-shrink: 0;
         }
 
         .vcard-btn:hover {
@@ -113,20 +129,21 @@
         .links-list {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 10px;
+            overflow-y: auto;
         }
 
         .link-item {
             display: flex;
             align-items: center;
-            padding: 14px 16px;
+            padding: 12px 16px;
             border-radius: 14px;
             background-color: #f8fafc;
             border: 1px solid var(--border-color);
             text-decoration: none;
             color: var(--text-main);
             font-weight: 500;
-            font-size: 14.5px;
+            font-size: 14px;
             transition: all 0.2s ease;
         }
 
@@ -146,6 +163,9 @@
         .link-item span {
             flex-grow: 1;
             text-align: left;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .link-item .arrow-icon {
@@ -157,10 +177,11 @@
 
         /* Footer */
         .footer {
-            margin-top: 32px;
+            margin-top: 24px;
             font-size: 11px;
             color: #94a3b8;
             letter-spacing: 0.05em;
+            flex-shrink: 0;
         }
     </style>
 </head>
@@ -168,21 +189,28 @@
 
     <div class="card-container">
         <div class="profile-img-container">
-            <img src="hasan.png" alt="Hasan Sarptaş" class="profile-img">
+            <img src="hasan.jpg" alt="Hasan Sarptaş" class="profile-img">
         </div>
 
         <h1 class="name">Hasan Sarptaş</h1>
         <div class="title">Assoc. Prof. Dr.</div>
-        <div class="company">Ege University</div>
+        <div class="company">Ege University<br>Solar Energy Institute</div>
 
         <a href="hasan_sarptas.vcf" class="vcard-btn">
             <i class="fa-solid fa-user-plus"></i> Kişilere Ekle
         </a>
 
         <div class="links-list">
+            <!-- Telefon Numarası Alanı (Numaranızı aşağıdaki 'tel:' kısmına ve yazı alanına ekleyebilirsiniz) -->
+            <a href="tel:+90XXXXXXXXXX" class="link-item">
+                <i class="fa-solid fa-phone" style="color: #22c55e;"></i>
+                <span>Telefon: +90 (XXX) XXX XX XX</span>
+                <i class="fa-solid fa-chevron-right arrow-icon"></i>
+            </a>
+
             <a href="mailto:hasan.sarptas@ege.edu.tr" class="link-item">
                 <i class="fa-regular fa-envelope" style="color: #ea4335;"></i>
-                <span>E-mail  : hasan.sarptas@ege.edu.tr</span>
+                <span>E-mail: hasan.sarptas@ege.edu.tr</span>
                 <i class="fa-solid fa-chevron-right arrow-icon"></i>
             </a>
 
